@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercícios com uma única input text</title>
+</head>
+<body>
+    <h1>Exercícios com uma única input text</h1>
+    <label for="entrada">Digite os dados:</label>
+    <input type="text" id="entrada" placeholder="Digite os dados" onblur="processarDados()"><br>
+    <div id="saida"></div>
+
+    <script>
+        function processarDados() {
+            var entrada = document.getElementById("entrada").value;
+            var dados = entrada.split(',');
+
+            var resultado = "";
+            
+            // a) Calcule a média de notas
+            if (dados.length > 1) {
+                var notas = dados.map(Number);
+                var media = notas.reduce((a, b) => a + b) / notas.length;
+                resultado += `Média das notas: ${media}<br>`;
+            }
+
+            // b) Quadrado de números
+            resultado += "Quadrados dos números: ";
+            for (var i = 0; i < 5; i++) {
+                if (i > 0) resultado += ', ';
+                resultado += Math.pow((dados[0] || 0), 2);
+            }
+            resultado += "<br>";
+
+            // c) Maior número
+            if (dados.length >= 5) {
+                var maiorNumero = Math.max(...dados);
+                resultado += `Maior número: ${maiorNumero}<br>`;
+            }
+
+            // d) Contagem de maiores de idade
+            var idades = dados.map(Number);
+            var maioresIdade = idades.filter(idade => idade >= 18).length;
+            var menoresIdade = idades.filter(idade => idade < 18).length;
+            resultado += `Maiores de idade: ${maioresIdade}, Menores de idade: ${menoresIdade}<br>`;
+
+            // e) Contagem de gênero e altura
+            var alturaSexo = dados.map(item => item.split(','));
+            var masculinos = alturaSexo.filter(item => item[1] === 'M').length;
+            var femininos = alturaSexo.filter(item => item[1] === 'F').length;
+            var alturas = alturaSexo.map(item => parseFloat(item[0]));
+            var maiorAltura = Math.max(...alturas);
+            var sexoMaiorAltura = alturaSexo.find(item => parseFloat(item[0]) === maiorAltura)[1];
+            resultado += `Masculinos: ${masculinos}, Femininos: ${femininos}<br>`;
+            resultado += `Maior altura: ${maiorAltura} (${sexoMaiorAltura})<br>`;
+
+            // f) Nomes invertidos
+            var nomes = entrada.split(',').reverse().join(', ');
+            resultado += `Nomes invertidos: ${nomes}<br>`;
+
+            // g) Separar data
+            var data = entrada.split('/');
+            if (data.length === 3) {
+                resultado += `Dia: ${data[0]}, Mês: ${data[1]}, Ano: ${data[2]}<br>`;
+            }
+
+            document.getElementById("saida").innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>

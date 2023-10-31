@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remover Caracteres Duplicados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remover Caracteres Duplicados</h1>
+    <textarea id="textarea1" rows="5" cols="40" placeholder="Digite um texto..."></textarea><br>
+    <button onclick="removerDuplicados()">Remover Duplicados</button><br>
+    <h2>Texto sem Caracteres Duplicados:</h2>
+    <textarea id="textarea2" rows="5" cols="40" readonly></textarea>
+
+    <script>
+        // Função para remover caracteres duplicados
+        function removerDuplicados() {
+            var textarea1 = document.getElementById("textarea1");
+            var textarea2 = document.getElementById("textarea2");
+
+            var textoOriginal = textarea1.value;
+            var textoSemDuplicados = removerCaracteresDuplicados(textoOriginal);
+
+            textarea2.value = textoSemDuplicados;
+        }
+
+        // Função para remover caracteres duplicados de um texto
+        function removerCaracteresDuplicados(texto) {
+            var caracteresSemDuplicados = "";
+            for (var i = 0; i < texto.length; i++) {
+                if (caracteresSemDuplicados.indexOf(texto[i]) === -1) {
+                    caracteresSemDuplicados += texto[i];
+                }
+            }
+            return caracteresSemDuplicados;
+        }
+    </script>
+</body>
+</html>

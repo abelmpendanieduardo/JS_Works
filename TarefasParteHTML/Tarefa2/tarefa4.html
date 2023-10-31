@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabuada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabuada</h1>
+    <label for="numero">Digite um número:</label>
+    <input type="number" id="numero" placeholder="Insira um número">
+    <button onclick="gerarTabuada()">Gerar Tabuada</button><br>
+    <h2>Tabuada:</h2>
+    <textarea id="tabuada" rows="10" cols="40" readonly></textarea>
+
+    <script>
+        // Função para gerar a tabuada
+        function gerarTabuada() {
+            var numero = parseInt(document.getElementById("numero").value);
+            var tabuada = "";
+
+            if (!isNaN(numero)) {
+                for (var i = 1; i <= 10; i++) {
+                    tabuada += numero + " x " + i + " = " + (numero * i) + "\n";
+                }
+            } else {
+                tabuada = "Por favor, insira um número válido.";
+            }
+
+            document.getElementById("tabuada").value = tabuada;
+        }
+    </script>
+</body>
+</html>

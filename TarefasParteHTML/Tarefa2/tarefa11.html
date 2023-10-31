@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data por Extenso</title>
+</head>
+<body>
+    <h1>Data por Extenso</h1>
+    <label for="dataInput">Digite a data (dd/mm/aaaa):</label>
+    <input type="text" id="dataInput">
+    <button onclick="escreverDataPorExtenso()">Converter</button>
+    <p id="dataExtenso"></p>
+
+    <script>
+        function escreverDataPorExtenso() {
+            var dataInput = document.getElementById("dataInput").value;
+            var dataParts = dataInput.split('/');
+
+            if (dataParts.length === 3) {
+                var dia = dataParts[0];
+                var mes = dataParts[1];
+                var ano = dataParts[2];
+
+                var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                var unidades = ["", "Um", "Dois", "Três", "Quatro", "Cinco", "Seis", "Sete", "Oito", "Nove"];
+                var dezenas = ["", "Dez", "Vinte", "Trinta", "Quarenta", "Cinquenta", "Sessenta", "Setenta", "Oitenta", "Noventa"];
+                var centenas = ["", "Cem", "Duzentos", "Trezentos", "Quatrocentos", "Quinhentos", "Seiscentos", "Setecentos", "Oitocentos", "Novecentos"];
+
+                var diaExtenso = unidades[dia];
+                var mesExtenso = meses[parseInt(mes) - 1];
+
+                var anoExtenso = "";
+                for (var i = 0; i < ano.length; i++) {
+                    anoExtenso += unidades[parseInt(ano[i])] + " ";
+                }
+
+                document.getElementById("dataExtenso").textContent = `${diaExtenso} de ${mesExtenso} de ${anoExtenso}`;
+            } else {
+                document.getElementById("dataExtenso").textContent = "Formato de data inválido. Use dd/mm/aaaa.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Múltiplos e Números Primos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Múltiplos e Números Primos</h1>
+    <label for="valorMinimo">Valor Mínimo:</label>
+    <input type="number" id="valorMinimo" placeholder="Insira o valor mínimo"><br>
+    <label for="valorMaximo">Valor Máximo:</label>
+    <input type="number" id="valorMaximo" placeholder="Insira o valor máximo"><br>
+    <button onclick="calcular()">Calcular</button><br>
+    <h2>Resultados:</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function calcular() {
+            var valorMinimo = parseInt(document.getElementById("valorMinimo").value);
+            var valorMaximo = parseInt(document.getElementById("valorMaximo").value);
+
+            if (!isNaN(valorMinimo) && !isNaN(valorMaximo)) {
+                if (valorMinimo <= valorMaximo) {
+                    var multiplos23 = 0;
+                    var numerosPrimos = [];
+
+                    for (var i = valorMinimo; i <= valorMaximo; i++) {
+                        if (i % 2 === 0 && i % 3 === 0) {
+                            multiplos23++;
+                        }
+                        if (i > 1 && isPrimo(i)) {
+                            numerosPrimos.push(i);
+                        }
+                    }
+
+                    document.getElementById("resultado").textContent = `Múltiplos de 2 e 3: ${multiplos23}, Números Primos: ${numerosPrimos.join(", ")}`;
+                } else {
+                    document.getElementById("resultado").textContent = "O valor mínimo deve ser menor ou igual ao valor máximo.";
+                }
+            } else {
+                document.getElementById("resultado").textContent = "Por favor, insira valores válidos.";
+            }
+        }
+
+        function isPrimo(numero) {
+            if (numero <= 1) return false;
+            if (numero <= 3) return true;
+
+            if (numero % 2 === 0 || numero % 3 === 0) return false;
+
+            for (var i = 5; i * i <= numero; i += 6) {
+                if (numero % i === 0 || numero % (i + 2) === 0) return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

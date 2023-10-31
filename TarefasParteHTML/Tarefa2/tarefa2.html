@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contagem Decrescente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .par {
+            color: red;
+        }
+        .impar {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contagem Decrescente</h1>
+    <div id="contador"></div>
+
+    <script>
+        // Função para criar a contagem decrescente
+        function contagemDecrescente() {
+            var contador = document.getElementById("contador");
+            contador.innerHTML = "";
+
+            for (var i = 30; i >= 0; i--) {
+                var elementoNumero = document.createElement("span");
+                elementoNumero.textContent = i;
+
+                // Verifica se o número é par ou ímpar e aplica a classe CSS apropriada
+                if (i % 2 === 0) {
+                    elementoNumero.className = "par";
+                } else {
+                    elementoNumero.className = "impar";
+                }
+
+                contador.appendChild(elementoNumero);
+
+                // Adiciona um espaço após o número, exceto para o zero
+                if (i !== 0) {
+                    contador.appendChild(document.createTextNode(" "));
+                }
+            }
+        }
+
+        // Chama a função quando a página é carregada
+        contagemDecrescente();
+    </script>
+</body>
+</html>
